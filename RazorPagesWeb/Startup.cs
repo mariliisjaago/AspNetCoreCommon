@@ -1,7 +1,9 @@
 using DbAccess_Library.Contracts.Db;
 using DbAccess_Library.Contracts.Repos;
+using DbAccess_Library.Contracts.Strategies;
 using DbAccess_Library.Db;
 using DbAccess_Library.Repos;
+using DbAccess_Library.Strategies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +35,8 @@ namespace RazorPagesWeb
 
             services.AddScoped<IFoodsRepo, SqlFoodsRepo>();
             services.AddScoped<IOrdersRepo, SqlOrdersRepo>();
+
+            services.AddScoped<IPlaceOrder, PlaceOrder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

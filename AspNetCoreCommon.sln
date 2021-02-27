@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccess_Library.Models", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingConsole", "TestingConsole\TestingConsole.csproj", "{8B2A892B-0E62-44E0-9B0E-35DC45CE2615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesWeb", "RazorPagesWeb\RazorPagesWeb.csproj", "{8D5FA952-1282-4BA5-B7A1-33562922DE1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesWeb", "RazorPagesWeb\RazorPagesWeb.csproj", "{8D5FA952-1282-4BA5-B7A1-33562922DE1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

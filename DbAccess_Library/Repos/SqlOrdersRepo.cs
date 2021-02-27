@@ -21,8 +21,8 @@ namespace DbAccess_Library.Repos
 
         public async Task<int> CreateOrderAsync(OrderModel order)
         {
-            string sql = "insert into dbo.Orders (OrderName, OrderDate, FoodId, Quantity, Price) " +
-                "values (@OrderName, @OrderDate, @FoodId, @Quantity, @Price); " +
+            string sql = "insert into dbo.Orders (OrderName, OrderDate, FoodId, Quantity, Total) " +
+                "values (@OrderName, @OrderDate, @FoodId, @Quantity, @Total); " +
                 "select SCOPE_IDENTITY();";
 
             DynamicParameters parameters = new DynamicParameters();

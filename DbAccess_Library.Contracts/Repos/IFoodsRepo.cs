@@ -7,5 +7,6 @@ namespace DbAccess_Library.Contracts.Repos
     public interface IFoodsRepo
     {
         Task<List<FoodModel>> GetAllFoods();
+        Task<FoodModel> GetById(int foodId);
     }
 }

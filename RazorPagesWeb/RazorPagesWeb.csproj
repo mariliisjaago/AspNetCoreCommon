@@ -10,8 +10,4 @@
     <ProjectReference Include="..\DbAccess_Library\DbAccess_Library.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Orders\" />
-  </ItemGroup>
-
 </Project>
