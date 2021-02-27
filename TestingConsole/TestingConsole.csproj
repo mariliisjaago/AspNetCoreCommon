@@ -1,11 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DbAccess_Library.Contracts\DbAccess_Library.Contracts.csproj" />
     <ProjectReference Include="..\DbAccess_Library.Models\DbAccess_Library.Models.csproj" />
+    <ProjectReference Include="..\DbAccess_Library\DbAccess_Library.csproj" />
   </ItemGroup>
 
 </Project>
