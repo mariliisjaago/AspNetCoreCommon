@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DbAccess_Library.Contracts\DbAccess_Library.Contracts.csproj" />
+    <ProjectReference Include="..\DbAccess_Library.Models\DbAccess_Library.Models.csproj" />
+  </ItemGroup>
+
 </Project>
