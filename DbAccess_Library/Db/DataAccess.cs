@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DbAccess_Library.Contracts.Db;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DbAccess_Library.Db
             _config = config;
         }
 
-        public async Task<List<T>> LoadData<T, U>(string sqlStatement, U parameters, string connectionStringName)
+        public async Task<List<T>> Load<T>(string sqlStatement, object parameters, string connectionStringName)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
 
@@ -29,7 +30,7 @@ namespace DbAccess_Library.Db
             }
         }
 
-        public async Task<int> SaveData<U>(string sqlStatement, U parameters, string connectionStringName)
+        public async Task<int> Save(string sqlStatement, object parameters, string connectionStringName)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
 

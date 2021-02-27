@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccess_Library.Contracts"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccess_Library.Models", "DbAccess_Library.Models\DbAccess_Library.Models.csproj", "{156BD38A-3EC2-4AC7-9221-F52977C13393}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingConsole", "TestingConsole\TestingConsole.csproj", "{8B2A892B-0E62-44E0-9B0E-35DC45CE2615}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{156BD38A-3EC2-4AC7-9221-F52977C13393}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{156BD38A-3EC2-4AC7-9221-F52977C13393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{156BD38A-3EC2-4AC7-9221-F52977C13393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B2A892B-0E62-44E0-9B0E-35DC45CE2615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B2A892B-0E62-44E0-9B0E-35DC45CE2615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B2A892B-0E62-44E0-9B0E-35DC45CE2615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B2A892B-0E62-44E0-9B0E-35DC45CE2615}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
