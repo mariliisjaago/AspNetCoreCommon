@@ -33,7 +33,7 @@ namespace DbAccess_Library.Repos
             parameters.Add("Quantity", order.Quantity);
             parameters.Add("Total", order.Total);
 
-            var newlyCreatedId = await _dataAccess.Save(sql, parameters, _connectionStringData.SqlConnectionName);
+            var newlyCreatedId = await _dataAccess.InsertAndGetId(sql, parameters, _connectionStringData.SqlConnectionName);
 
             return newlyCreatedId;
         }
