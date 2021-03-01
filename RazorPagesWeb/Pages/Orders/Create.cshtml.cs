@@ -1,7 +1,6 @@
 using DbAccess_Library.Contracts.Repos;
 using DbAccess_Library.Contracts.Strategies;
 using DbAccess_Library.Models;
-using DbAccess_Library.Strategies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -40,7 +39,7 @@ namespace RazorPagesWeb.Pages.Orders
 
             int id = await _placeOrder.Place(Order);
 
-            return RedirectToPage("./Create");
+            return RedirectToPage("./Display", new { Id = id });
         }
 
         private async Task PopulateFoodItems()
