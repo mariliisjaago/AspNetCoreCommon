@@ -21,8 +21,8 @@ namespace DbAccess_Library.Repos
 
         public async Task<int> CreateOrderAsync(OrderModel order)
         {
-            string sql = "insert into dbo.Orders (OrderName, OrderDate, FoodId, Quantity, Price) " +
-                "values (@OrderName, @OrderDate, @FoodId, @Quantity, @Price); " +
+            string sql = "insert into dbo.Orders (OrderName, OrderDate, FoodId, Quantity, Total) " +
+                "values (@OrderName, @OrderDate, @FoodId, @Quantity, @Total); " +
                 "select SCOPE_IDENTITY();";
 
             DynamicParameters parameters = new DynamicParameters();
@@ -33,7 +33,7 @@ namespace DbAccess_Library.Repos
             parameters.Add("Quantity", order.Quantity);
             parameters.Add("Total", order.Total);
 
-            var newlyCreatedId = await _dataAccess.Save(sql, parameters, _connectionStringData.SqlConnectionName);
+            var newlyCreatedId = await _dataAccess.InsertAndGetId(sql, parameters, _connectionStringData.SqlConnectionName);
 
             return newlyCreatedId;
         }

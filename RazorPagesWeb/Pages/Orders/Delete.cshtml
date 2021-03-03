@@ -1,0 +1,36 @@
+﻿@page
+@model RazorPagesWeb.Pages.Orders.DeleteModel
+@{
+}
+
+@if (Model.Order == null)
+{
+    <h4>No record could be found</h4>
+}
+else
+{
+    <div class="h3">
+        Are you sure you want to delete this order?
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><strong>Order name: </strong></td>
+                <td>@Model.Order.OrderName</td>
+            </tr>
+            <tr>
+                <td><strong>Order date: </strong></td>
+                <td>@Model.Order.OrderDate</td>
+            </tr>
+            <tr>
+                <td><strong>Total: </strong></td>
+                <td>@String.Format("{0:C}", Model.Order.Total)</td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="post">
+        <input type="hidden" asp-for="Id" value="@Model.Order.Id" />
+        <button type="submit" asp-page="./Delete" class="btn btn-danger">Delete order</button>
+    </form>
+
+}

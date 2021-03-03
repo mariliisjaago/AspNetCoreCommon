@@ -30,6 +30,19 @@ namespace DbAccess_Library.Db
             }
         }
 
+        public async Task<int> InsertAndGetId(string sqlStatement, object parameters, string connectionStringName)
+        {
+            string connectionString = _config.GetConnectionString(connectionStringName);
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var ints = await connection.QueryAsync<int>(sqlStatement, parameters);
+
+                return ints.ToList().FirstOrDefault();
+            }
+        }
+
+
         public async Task<int> Save(string sqlStatement, object parameters, string connectionStringName)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);

@@ -1,0 +1,53 @@
+﻿@page
+@model RazorPagesWeb.Pages.Orders.DisplayModel
+@{
+}
+
+@if (Model.Order == null)
+{
+    <h4>Sorry, that order could not be found.</h4>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><strong>Order name: </strong></td>
+                <td>@Model.Order.OrderName</td>
+            </tr>
+            <tr>
+                <td><strong>Order date: </strong></td>
+                <td>@Model.Order.OrderDate</td>
+            </tr>
+            <tr>
+                <td><strong>Order total: </strong></td>
+                <td>@String.Format("{0:C}", Model.Order.Total)</td>
+            </tr>
+            <tr>
+                <td><strong>Food: </strong></td>
+                <td>@Model.ItemPurchased</td>
+            </tr>
+            <tr>
+                <td><strong>Quantity: </strong></td>
+                <td>@Model.Order.Quantity</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.Order.Id">Delete order</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="UpdateOrder.Id" value="@Model.Order.Id" />
+        <div class="form-group">
+            <label asp-for="UpdateOrder.OrderName">Update order's name: </label><br />
+            <input asp-for="UpdateOrder.OrderName" />
+            <span asp-validation-for="UpdateOrder.OrderName" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Update order</button>
+    </form>
+
+}
