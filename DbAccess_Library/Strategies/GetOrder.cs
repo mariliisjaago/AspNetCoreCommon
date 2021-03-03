@@ -26,5 +26,10 @@ namespace DbAccess_Library.Strategies
 
             return (order, foodTitle);
         }
+
+        public Task<OrderModel> Get(int id)
+        {
+            return _ordersRepo.GetById(id);
+        }
     }
 }

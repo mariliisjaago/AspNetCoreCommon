@@ -38,6 +38,7 @@ namespace RazorPagesWeb
 
             services.AddScoped<IPlaceOrder, PlaceOrder>();
             services.AddScoped<IGetOrder, GetOrder>();
+            services.AddScoped<IDeleteOrder, DeleteOrder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,6 +3,7 @@ using DbAccess_Library.Contracts.Strategies;
 using DbAccess_Library.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Threading.Tasks;
 
 namespace RazorPagesWeb.Pages.Orders
@@ -29,13 +30,22 @@ namespace RazorPagesWeb.Pages.Orders
 
         public async Task<IActionResult> OnGetAsync()
         {
-            (OrderModel order, string foodTitle) fullOrderData = await _getOrderStrategy.GetOrderAndFoodTitle(Id);
+            try
+            {
+                (OrderModel order, string foodTitle) fullOrderData = await _getOrderStrategy.GetOrderAndFoodTitle(Id);
 
-            Order = fullOrderData.order;
+                Order = fullOrderData.order;
 
-            ItemPurchased = fullOrderData.foodTitle;
+                ItemPurchased = fullOrderData.foodTitle;
 
-            return Page();
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                Order = null;
+
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost()
