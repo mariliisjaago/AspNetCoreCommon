@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DbAccess_Library.Contracts.Strategies
 {
-    public interface IPlaceOrder
+    public interface IPlaceOrderStrategy
     {
         Task<int> Place(OrderModel order);
     }

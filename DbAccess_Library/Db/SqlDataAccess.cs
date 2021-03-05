@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DbAccess_Library.Db
 {
-    public class DataAccess : IDataAccess
+    public class SqlDataAccess : IDataAccess
     {
         private readonly IConfiguration _config;
 
-        public DataAccess(IConfiguration config)
+        public SqlDataAccess(IConfiguration config)
         {
             _config = config;
         }

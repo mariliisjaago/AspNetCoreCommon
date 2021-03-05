@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace DbAccess_Library.Strategies
 {
-    public class GetOrder : IGetOrder
+    public class GetOrderStrategy : IGetOrderStrategy
     {
         private readonly IOrdersRepo _ordersRepo;
         private readonly IFoodsRepo _foodsRepo;
 
-        public GetOrder(IOrdersRepo ordersRepo, IFoodsRepo foodsRepo)
+        public GetOrderStrategy(IOrdersRepo ordersRepo, IFoodsRepo foodsRepo)
         {
             _ordersRepo = ordersRepo;
             _foodsRepo = foodsRepo;

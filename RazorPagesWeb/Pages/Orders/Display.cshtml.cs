@@ -10,7 +10,7 @@ namespace RazorPagesWeb.Pages.Orders
 {
     public class DisplayModel : PageModel
     {
-        private readonly IGetOrder _getOrderStrategy;
+        private readonly IGetOrderStrategy _getOrderStrategy;
         private readonly IOrdersRepo _ordersRepo;
 
         [BindProperty(SupportsGet = true)]
@@ -21,7 +21,7 @@ namespace RazorPagesWeb.Pages.Orders
         [BindProperty]
         public UpdateOrderModel UpdateOrder { get; set; }
 
-        public DisplayModel(IGetOrder getOrderStrategy, IOrdersRepo ordersRepo)
+        public DisplayModel(IGetOrderStrategy getOrderStrategy, IOrdersRepo ordersRepo)
         {
             _getOrderStrategy = getOrderStrategy;
             _ordersRepo = ordersRepo;

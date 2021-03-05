@@ -3,11 +3,11 @@ using DbAccess_Library.Contracts.Strategies;
 
 namespace DbAccess_Library.Strategies
 {
-    public class DeleteOrder : IDeleteOrder
+    public class DeleteOrderStrategy : IDeleteOrderStrategy
     {
         private readonly IOrdersRepo _ordersRepo;
 
-        public DeleteOrder(IOrdersRepo ordersRepo)
+        public DeleteOrderStrategy(IOrdersRepo ordersRepo)
         {
             _ordersRepo = ordersRepo;
         }

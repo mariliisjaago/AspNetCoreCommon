@@ -8,13 +8,13 @@ namespace RazorPagesWeb.Pages.Orders
 {
     public class DeleteModel : PageModel
     {
-        private readonly IGetOrder _getOrder;
-        private readonly IDeleteOrder _deleteOrder;
+        private readonly IGetOrderStrategy _getOrder;
+        private readonly IDeleteOrderStrategy _deleteOrder;
 
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
         public OrderModel Order { get; set; }
-        public DeleteModel(IGetOrder getOrder, IDeleteOrder deleteOrder)
+        public DeleteModel(IGetOrderStrategy getOrder, IDeleteOrderStrategy deleteOrder)
         {
             _getOrder = getOrder;
             _deleteOrder = deleteOrder;
