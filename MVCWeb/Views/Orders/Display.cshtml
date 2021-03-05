@@ -1,0 +1,33 @@
+﻿@model MVCWeb.Models.OrderDisplayModel
+
+@{
+    ViewData["Title"] = "Display";
+}
+
+<h1>Your order details: </h1>
+
+<table class="table-striped">
+    <tbody>
+        <tr>
+            <td><strong>Order name: </strong></td>
+            <td>@Model.Order.OrderName</td>
+        </tr>
+        <tr>
+            <td><strong>Order date: </strong></td>
+            <td>@Model.Order.OrderDate</td>
+        </tr>
+        <tr>
+            <td><strong>Food: </strong></td>
+            <td>@Model.ItemPurchased</td>
+        </tr>
+        <tr>
+            <td><strong>Quantity: </strong></td>
+            <td>@Model.Order.Quantity</td>
+        </tr>
+        <tr>
+            <td><strong>Total: </strong></td>
+            <td>@String.Format("{0:C}", Model.Order.Total)</td>
+        </tr>
+    </tbody>
+</table>
+
