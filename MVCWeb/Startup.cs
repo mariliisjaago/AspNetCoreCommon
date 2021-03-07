@@ -29,7 +29,7 @@ namespace MVCWeb
             services.AddScoped<IDataAccess, SqlDataAccess>();
             services.AddSingleton(new ConnectionStringData
             {
-                SqlConnectionName = "Development"
+                SqlConnectionName = "Production"
             });
 
             services.AddScoped<IFoodsRepo, SqlFoodsRepo>();
