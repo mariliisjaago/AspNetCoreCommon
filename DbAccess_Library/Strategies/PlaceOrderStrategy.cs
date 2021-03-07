@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace DbAccess_Library.Strategies
 {
-    public class PlaceOrder : IPlaceOrder
+    public class PlaceOrderStrategy : IPlaceOrderStrategy
     {
         private readonly IFoodsRepo _foodsRepo;
         private readonly IOrdersRepo _ordersRepo;
 
-        public PlaceOrder(IFoodsRepo foodsRepo, IOrdersRepo ordersRepo)
+        public PlaceOrderStrategy(IFoodsRepo foodsRepo, IOrdersRepo ordersRepo)
         {
             _foodsRepo = foodsRepo;
             _ordersRepo = ordersRepo;
@@ -28,6 +28,11 @@ namespace DbAccess_Library.Strategies
             int orderId = await _ordersRepo.CreateOrderAsync(order);
 
             return orderId;
+        }
+
+        public Task UpdateOrderName(int id, string orderName)
+        {
+            return _ordersRepo.UpdateOrderName(id, orderName);
         }
 
         private decimal CalculateTotal(FoodModel selectedFood, OrderModel order)

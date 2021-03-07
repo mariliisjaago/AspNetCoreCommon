@@ -14,12 +14,12 @@ namespace RazorPagesWeb.Pages.Orders
     {
         private readonly IFoodsRepo _foodsRepo;
         private readonly IOrdersRepo _ordersRepo;
-        private readonly IPlaceOrder _placeOrder;
+        private readonly IPlaceOrderStrategy _placeOrder;
 
         public List<SelectListItem> FoodItems { get; set; }
         public OrderModel Order { get; set; }
 
-        public CreateModel(IFoodsRepo foodsRepo, IPlaceOrder placeOrder)
+        public CreateModel(IFoodsRepo foodsRepo, IPlaceOrderStrategy placeOrder)
         {
             _foodsRepo = foodsRepo;
             _placeOrder = placeOrder;

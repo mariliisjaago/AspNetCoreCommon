@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>acc7fead-7add-47a2-875b-4ca6fefb5e5b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DbAccess_Library.Contracts\DbAccess_Library.Contracts.csproj" />
+    <ProjectReference Include="..\DbAccess_Library.Models\DbAccess_Library.Models.csproj" />
+    <ProjectReference Include="..\DbAccess_Library\DbAccess_Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>
