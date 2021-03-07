@@ -13,12 +13,15 @@ namespace MVCWeb.Controllers
         private readonly IFoodsRepo _foodsRepo;
         private readonly IPlaceOrderStrategy _placeOrderStrategy;
         private readonly IGetOrderStrategy _getOrderStrategy;
+        private readonly IDeleteOrderStrategy _deleteOrderStrategy;
 
-        public OrdersController(IFoodsRepo foodsRepo, IPlaceOrderStrategy placeOrderStrategy, IGetOrderStrategy getOrderStrategy)
+        public OrdersController(IFoodsRepo foodsRepo, IPlaceOrderStrategy placeOrderStrategy, IGetOrderStrategy getOrderStrategy,
+            IDeleteOrderStrategy deleteOrderStrategy)
         {
             _foodsRepo = foodsRepo;
             _placeOrderStrategy = placeOrderStrategy;
             _getOrderStrategy = getOrderStrategy;
+            _deleteOrderStrategy = deleteOrderStrategy;
         }
 
         public IActionResult Index()
@@ -80,6 +83,27 @@ namespace MVCWeb.Controllers
             await _placeOrderStrategy.UpdateOrderName(id, orderName);
 
             return RedirectToAction("Display", new { id });
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            (OrderModel order, string foodTitle) orderInfo = await _getOrderStrategy.GetOrderAndFoodTitle(id);
+
+            OrderDisplayModel orderDisplay = new OrderDisplayModel()
+            {
+                Order = orderInfo.order,
+                ItemPurchased = orderInfo.foodTitle
+            };
+
+            return View(orderDisplay);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(OrderModel order)
+        {
+            _deleteOrderStrategy.Delete(order.Id);
+
+            return RedirectToAction("Create");
         }
     }
 }

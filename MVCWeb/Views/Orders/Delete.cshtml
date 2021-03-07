@@ -1,21 +1,15 @@
 ﻿@model MVCWeb.Models.OrderDisplayModel
 
-@{
-    ViewData["Title"] = "Display";
-}
-
-
-
-@if (Model.Order == null)
+@if (Model == null)
 {
     <h2>Sorry, could not find your record.</h2>
 }
 else
 {
-    <h1>Your order details: </h1>
+    <h2>Are you sure you want to delete the following order?</h2>
 
     <table class="table">
-        <tbody class="table-striped">
+        <tbody>
             <tr>
                 <td><strong>Order name: </strong></td>
                 <td>@Model.Order.OrderName</td>
@@ -36,25 +30,11 @@ else
                 <td><strong>Total: </strong></td>
                 <td>@String.Format("{0:C}", Model.Order.Total)</td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <a asp-action="Delete" asp-route-id="@Model.Order.Id" class="btn btn-danger">Delete order</a>
-                </td>
-            </tr>
         </tbody>
     </table>
 
-    <form asp-action="Update">
-        <input name="id" type="hidden" value="@Model.Order.Id" />
-        <div class="form-group">
-            <label>Update order name: </label>
-            <input name="orderName" value="@Model.Order.OrderName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Update" />
-        </div>
+    <form asp-action="Delete">
+        <input name="Id" type="hidden" value="@Model.Order.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
     </form>
 }
-
-
-
