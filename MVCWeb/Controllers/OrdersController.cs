@@ -73,5 +73,13 @@ namespace MVCWeb.Controllers
 
             return View(orderDisplay);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, string orderName)
+        {
+            await _placeOrderStrategy.UpdateOrderName(id, orderName);
+
+            return RedirectToAction("Display", new { id });
+        }
     }
 }

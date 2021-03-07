@@ -30,6 +30,11 @@ namespace DbAccess_Library.Strategies
             return orderId;
         }
 
+        public Task UpdateOrderName(int id, string orderName)
+        {
+            return _ordersRepo.UpdateOrderName(id, orderName);
+        }
+
         private decimal CalculateTotal(FoodModel selectedFood, OrderModel order)
         {
             return selectedFood.Price * order.Quantity;
