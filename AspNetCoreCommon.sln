@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccess_Library.Models", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesWeb", "RazorPagesWeb\RazorPagesWeb.csproj", "{8D5FA952-1282-4BA5-B7A1-33562922DE1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCWeb", "MVCWeb\MVCWeb.csproj", "{0FD070EB-DF54-4305-B8C8-BEFFAA853AFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCWeb", "MVCWeb\MVCWeb.csproj", "{0FD070EB-DF54-4305-B8C8-BEFFAA853AFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetAPI", "AspNetAPI\AspNetAPI.csproj", "{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{0FD070EB-DF54-4305-B8C8-BEFFAA853AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD070EB-DF54-4305-B8C8-BEFFAA853AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD070EB-DF54-4305-B8C8-BEFFAA853AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
