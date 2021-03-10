@@ -22,10 +22,39 @@ namespace AspNetAPI.Controllers
             _foodsRepo = foodsRepo;
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            var order = await _getOrderStrategy.Get(id);
+
+            if (order != null)
+            {
+                var itemPurchased = await _foodsRepo.GetById(order.FoodId);
+
+                var output = new { Order = order, ItemPurchased = itemPurchased.Title };
+
+                return Ok(output);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
+
         [HttpPost]
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(OrderModel order)
         {
             var selectedFood = await _foodsRepo.GetById(order.FoodId);
