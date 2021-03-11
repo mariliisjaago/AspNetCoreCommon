@@ -1,15 +1,14 @@
+using DbAccess_Library.Contracts.Db;
+using DbAccess_Library.Contracts.Repos;
+using DbAccess_Library.Contracts.Strategies;
+using DbAccess_Library.Db;
+using DbAccess_Library.Repos;
+using DbAccess_Library.Strategies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetAPI
 {
@@ -26,6 +25,23 @@ namespace AspNetAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton(new ConnectionStringData
+            {
+#if DEBUG
+                SqlConnectionName = "Development"
+#else
+                SqlConnectionName = "Production"
+#endif
+            });
+            services.AddScoped<IDataAccess, SqlDataAccess>();
+
+            services.AddScoped<IFoodsRepo, SqlFoodsRepo>();
+            services.AddScoped<IOrdersRepo, SqlOrdersRepo>();
+
+            services.AddScoped<IDeleteOrderStrategy, DeleteOrderStrategy>();
+            services.AddScoped<IGetOrderStrategy, GetOrderStrategy>();
+            services.AddScoped<IPlaceOrderStrategy, PlaceOrderStrategy>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

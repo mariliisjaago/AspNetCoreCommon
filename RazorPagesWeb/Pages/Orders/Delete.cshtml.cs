@@ -27,9 +27,9 @@ namespace RazorPagesWeb.Pages.Orders
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            _deleteOrder.Delete(Id);
+            await _deleteOrder.Delete(Id);
 
             return RedirectToPage("./Create");
         }

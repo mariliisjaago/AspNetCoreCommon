@@ -101,7 +101,7 @@ namespace MVCWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(OrderModel order)
         {
-            _deleteOrderStrategy.Delete(order.Id);
+            await _deleteOrderStrategy.Delete(order.Id);
 
             return RedirectToAction("Create");
         }
