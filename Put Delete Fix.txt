@@ -1,0 +1,8 @@
+You must add this code to your web.config file AFTER EVERY TIME YOU PUBLISH THE API project.
+The web.config file is in the root of your folder where you published.
+
+<system.webServer>
+	<modules runAllManagedModulesForAllRequests="false">
+		<remove name="WebDAVModule" />
+	</modules>
+</system.webServer>

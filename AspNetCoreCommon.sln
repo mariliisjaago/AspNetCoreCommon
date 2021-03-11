@@ -15,7 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesWeb", "RazorPages
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCWeb", "MVCWeb\MVCWeb.csproj", "{0FD070EB-DF54-4305-B8C8-BEFFAA853AFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetAPI", "AspNetAPI\AspNetAPI.csproj", "{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetAPI", "AspNetAPI\AspNetAPI.csproj", "{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C867DAA0-CF08-47DE-AEA1-0692F8095CB6}"
+	ProjectSection(SolutionItems) = preProject
+		Put Delete Fix.txt = Put Delete Fix.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

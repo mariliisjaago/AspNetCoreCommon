@@ -26,6 +26,13 @@ namespace AspNetAPI
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("WideOpen", builder => builder.AllowAnyOrigin()
+                                                                .AllowAnyMethod()
+                                                                .AllowAnyHeader());
+            });
+
             services.AddSingleton(new ConnectionStringData
             {
 #if DEBUG
@@ -55,6 +62,8 @@ namespace AspNetAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("WideOpen");
 
             app.UseAuthorization();
 
