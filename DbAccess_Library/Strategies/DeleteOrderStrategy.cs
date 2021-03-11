@@ -1,5 +1,6 @@
 ﻿using DbAccess_Library.Contracts.Repos;
 using DbAccess_Library.Contracts.Strategies;
+using System.Threading.Tasks;
 
 namespace DbAccess_Library.Strategies
 {
@@ -12,11 +13,11 @@ namespace DbAccess_Library.Strategies
             _ordersRepo = ordersRepo;
         }
 
-        public void Delete(int id)
+        public Task Delete(int id)
         {
-            _ordersRepo.Delete(id);
+            var response = _ordersRepo.Delete(id);
 
-
+            return response;
         }
     }
 }
