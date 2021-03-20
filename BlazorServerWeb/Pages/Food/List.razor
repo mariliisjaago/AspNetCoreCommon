@@ -1,0 +1,44 @@
+﻿@page "/food/list"
+
+@inject IFoodsRepo foodsRepo
+
+<h3>Menu</h3>
+
+@if (foodList is null)
+{
+    <h4>Menu loading...</h4>
+}
+else
+{
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in foodList)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@String.Format("{0:C}", item.Price)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+
+    private List<FoodModel> foodList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        foodList = await foodsRepo.GetAllFoods();
+    }
+
+}
