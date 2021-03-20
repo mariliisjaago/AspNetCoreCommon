@@ -1,0 +1,60 @@
+﻿@page "/order/display/{Id:int}"
+@page "/order/display"
+
+@inject IGetOrderStrategy getOrderStrategy
+@inject IFoodsRepo foodsRepo
+
+<h3>Display</h3>
+
+@if (order is null)
+{
+    <h4>Record loading...</h4>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><strong>Order name</strong></td>
+                <td>@order.OrderName</td>
+            </tr>
+            <tr>
+                <td><strong>Order date</strong></td>
+                <td>@order.OrderDate</td>
+            </tr>
+            <tr>
+                <td><strong>Food</strong></td>
+                <td>@itemPurchased.Title</td>
+            </tr>
+            <tr>
+                <td><strong>Quantity</strong></td>
+                <td>@order.Quantity</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td>@String.Format("{0:C}", order.Total)</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private OrderModel order;
+    private FoodModel itemPurchased;
+
+    protected override async Task OnInitializedAsync()
+    {
+        order = await getOrderStrategy.Get(Id);
+
+        if (order != null)
+        {
+            itemPurchased = await foodsRepo.GetById(order.FoodId);
+        }
+    }
+}

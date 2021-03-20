@@ -1,6 +1,7 @@
 ﻿@page "/order/create"
 @inject IFoodsRepo foodsRepo
 @inject IPlaceOrderStrategy placeOrder
+@inject NavigationManager navManager
 
 <h3>Create an order</h3>
 
@@ -55,7 +56,7 @@
 
         int id = await placeOrder.Place(order);
 
-        order = new OrderModel();
+        navManager.NavigateTo($"/order/display/{id}");
     }
 
     private void FoodItemChange(ChangeEventArgs e)
