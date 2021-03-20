@@ -3,13 +3,20 @@
 
 @inject IGetOrderStrategy getOrderStrategy
 @inject IPlaceOrderStrategy placeOrderStrategy
+@inject IDeleteOrderStrategy deleteOrderStrategy
 @inject IFoodsRepo foodsRepo
+
+@inject NavigationManager navManager
 
 @using BlazorServerWeb.Models
 
 <h3>Display</h3>
 
-@if (order is null)
+@if (recordNotFound == true)
+{
+    <h4>Sorry, record not found</h4>
+}
+else if (order is null)
 {
     <h4>Record loading...</h4>
 }
@@ -36,6 +43,19 @@ else
             <tr>
                 <td><strong>Total</strong></td>
                 <td>@String.Format("{0:C}", order.Total)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (confirmDelete == true)
+                    {
+                        <button class="btn btn-outline-danger" @onclick="HandleDeleteOrder">Confirm delete</button>
+                        <button class="btn btn-secondary" @onclick="(() => confirmDelete = false)">Cancel</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger" @onclick="(() => confirmDelete = true)">Delete order</button>
+                    }
+                </td>
             </tr>
         </tbody>
     </table>
@@ -66,6 +86,9 @@ else
     private FoodModel itemPurchased;
     private OrderUpdateModel updateOrder = new OrderUpdateModel();
 
+    private bool confirmDelete = false;
+    private bool recordNotFound = false;
+
     protected override async Task OnInitializedAsync()
     {
         order = await getOrderStrategy.Get(Id);
@@ -77,6 +100,10 @@ else
             updateOrder.Id = order.Id;
             updateOrder.OrderName = order.OrderName;
         }
+        else
+        {
+            recordNotFound = true;
+        }
     }
 
     private async Task HandleValidSubmit()
@@ -84,5 +111,12 @@ else
         await placeOrderStrategy.UpdateOrderName(updateOrder.Id, updateOrder.OrderName);
 
         order.OrderName = updateOrder.OrderName;
+    }
+
+    private async Task HandleDeleteOrder()
+    {
+        await deleteOrderStrategy.Delete(Id);
+
+        navManager.NavigateTo($"/food/list");
     }
 }
