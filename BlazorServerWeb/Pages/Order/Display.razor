@@ -2,7 +2,10 @@
 @page "/order/display"
 
 @inject IGetOrderStrategy getOrderStrategy
+@inject IPlaceOrderStrategy placeOrderStrategy
 @inject IFoodsRepo foodsRepo
+
+@using BlazorServerWeb.Models
 
 <h3>Display</h3>
 
@@ -36,8 +39,22 @@ else
             </tr>
         </tbody>
     </table>
-}
 
+    <EditForm Model="@updateOrder" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary Model="@updateOrder" />
+
+        <div class="form-group">
+            <label class="control-label">Update order name</label>
+            <InputText @bind-Value="@updateOrder.OrderName" class="form-control" />
+            <ValidationMessage For="(() => updateOrder.OrderName)" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Update order" class="btn btn-dark" />
+        </div>
+    </EditForm>
+}
 
 
 @code {
@@ -47,6 +64,7 @@ else
 
     private OrderModel order;
     private FoodModel itemPurchased;
+    private OrderUpdateModel updateOrder = new OrderUpdateModel();
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,6 +73,16 @@ else
         if (order != null)
         {
             itemPurchased = await foodsRepo.GetById(order.FoodId);
+
+            updateOrder.Id = order.Id;
+            updateOrder.OrderName = order.OrderName;
         }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await placeOrderStrategy.UpdateOrderName(updateOrder.Id, updateOrder.OrderName);
+
+        order.OrderName = updateOrder.OrderName;
     }
 }
