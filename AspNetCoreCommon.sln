@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Put Delete Fix.txt = Put Delete Fix.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServerWeb", "BlazorServerWeb\BlazorServerWeb.csproj", "{828CA183-2FE2-4420-8300-4603D8ADC9CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{450FD8CE-F217-4876-8CA3-1EFBB742A9B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{828CA183-2FE2-4420-8300-4603D8ADC9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828CA183-2FE2-4420-8300-4603D8ADC9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828CA183-2FE2-4420-8300-4603D8ADC9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828CA183-2FE2-4420-8300-4603D8ADC9CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
