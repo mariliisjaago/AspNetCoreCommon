@@ -22,7 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Put Delete Fix.txt = Put Delete Fix.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServerWeb", "BlazorServerWeb\BlazorServerWeb.csproj", "{828CA183-2FE2-4420-8300-4603D8ADC9CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServerWeb", "BlazorServerWeb\BlazorServerWeb.csproj", "{828CA183-2FE2-4420-8300-4603D8ADC9CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAssembly", "BlazorWebAssembly\BlazorWebAssembly.csproj", "{C02341E6-2EB1-47AE-9B37-E9641C366BB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{828CA183-2FE2-4420-8300-4603D8ADC9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{828CA183-2FE2-4420-8300-4603D8ADC9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{828CA183-2FE2-4420-8300-4603D8ADC9CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C02341E6-2EB1-47AE-9B37-E9641C366BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C02341E6-2EB1-47AE-9B37-E9641C366BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C02341E6-2EB1-47AE-9B37-E9641C366BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C02341E6-2EB1-47AE-9B37-E9641C366BB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
