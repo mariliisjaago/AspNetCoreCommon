@@ -1,0 +1,100 @@
+﻿@page "/Order/Create"
+@inject HttpClient http
+@inject NavigationManager navMan
+
+<h3>Create</h3>
+
+@if (string.IsNullOrWhiteSpace(errorString) == false)
+{
+    <h3>System error</h3>
+    <p>@errorString</p>
+}
+else if (foodItems.Count == 0)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <EditForm Model="@order" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary Model="@order" />
+
+        <div class="form-group">
+            <label class="control-label">Item to Order</label>
+            <select @onchange="FoodItemChange" class="form-control">
+                <option value="">Select a meal...</option>
+                @foreach (var f in foodItems)
+                {
+                    <option value="@f.Id">@f.Title</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Quantity</label>
+            <InputNumber @bind-Value="@order.Quantity" class="form-control" />
+            <ValidationMessage For="@(() => order.Quantity)" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Order name</label>
+            <InputText @bind-Value="@order.OrderName" class="form-control" />
+            <ValidationMessage For="(() => order.OrderName)" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Order food" class="btn btn-dark" />
+        </div>
+    </EditForm>
+}
+
+@code {
+    private OrderModel order = new OrderModel();
+    private List<FoodModel> foodItems = new List<FoodModel>();
+    private string errorString;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var response = await http.GetAsync("api/food");
+
+        if (response.IsSuccessStatusCode)
+        {
+            foodItems = await response.Content.ReadFromJsonAsync<List<FoodModel>>();
+        }
+        else
+        {
+            errorString = response.ReasonPhrase;
+        }
+    }
+
+    private void FoodItemChange(ChangeEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.Value.ToString()) == false)
+        {
+            order.FoodId = int.Parse(e.Value.ToString());
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        FoodModel selectedItem = foodItems.Where(x => x.Id == order.FoodId).FirstOrDefault();
+
+        order.Total = order.Quantity * selectedItem.Price;
+
+        try
+        {
+            var response = await http.PostAsJsonAsync("api/order", order);
+
+            var contents = await response.Content.ReadFromJsonAsync<OrderCreateResultsModel>();
+
+            order = new OrderModel();
+
+            navMan.NavigateTo($"order/display/{ contents.Id }");
+        }
+        catch (Exception ex)
+        {
+            errorString = ex.Message;
+        }
+    }
+
+}
