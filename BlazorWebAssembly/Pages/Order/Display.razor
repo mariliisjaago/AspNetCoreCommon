@@ -1,0 +1,63 @@
+﻿@page "/order/display/{Id:int}"
+@inject HttpClient http
+@inject NavigationManager navMan
+
+<h3>Display</h3>
+
+@if (string.IsNullOrWhiteSpace(errorString) == false)
+{
+    <h3>System error</h3>
+    <p>@errorString</p>
+}
+else if (orderInfo.Order is null)
+{
+    <h3>Loading</h3>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><strong>Order name:</strong></td>
+                <td>@orderInfo.Order.OrderName</td>
+            </tr>
+            <tr>
+                <td><strong>Order date:</strong></td>
+                <td>@orderInfo.Order.OrderDate</td>
+            </tr>
+            <tr>
+                <td><strong>Item purchased:</strong></td>
+                <td>@orderInfo.ItemPurchased</td>
+            </tr>
+            <tr>
+                <td><strong>Quantity:</strong></td>
+                <td>@orderInfo.Order.Quantity</td>
+            </tr>
+            <tr>
+                <td><strong>Total:</strong></td>
+                <td>@String.Format("{0:C}", orderInfo.Order.Total)</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    public OrderDisplayModel orderInfo { get; set; } = new OrderDisplayModel();
+    public string errorString { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        HttpResponseMessage response = await http.GetAsync($"api/order/{Id}");
+
+        if (response.IsSuccessStatusCode == true)
+        {
+            orderInfo = await response.Content.ReadFromJsonAsync<OrderDisplayModel>();
+        }
+        else
+        {
+            errorString = response.ReasonPhrase;
+        }
+    }
+}

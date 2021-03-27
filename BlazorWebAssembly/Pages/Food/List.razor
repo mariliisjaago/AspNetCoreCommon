@@ -1,0 +1,55 @@
+﻿@page "/food/list"
+@inject HttpClient http
+
+<h3>Menu</h3>
+
+@if (string.IsNullOrWhiteSpace(errorString) == false)
+{
+    <h4>System error</h4>
+    <p>@errorString</p>
+}
+else if (foodItems.Count == 0)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead class="thead thead-dark">
+            <tr>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in foodItems)
+            {
+                <tr>
+                    <td>@f.Title</td>
+                    <td>@f.Description</td>
+                    <td>@String.Format("{0:C}", f.Price)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public List<FoodModel> foodItems { get; set; } = new List<FoodModel>();
+    public string errorString { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        HttpResponseMessage response = await http.GetAsync("api/food");
+
+        if (response.IsSuccessStatusCode == true)
+        {
+            foodItems = await response.Content.ReadFromJsonAsync<List<FoodModel>>();
+        }
+        else
+        {
+            errorString = response.ReasonPhrase;
+        }
+    }
+}
