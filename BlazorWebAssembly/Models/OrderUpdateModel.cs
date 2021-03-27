@@ -9,6 +9,6 @@ namespace BlazorWebAssembly.Models
         [Required]
         [MaxLength(20, ErrorMessage = "Max is 20 characters")]
         [MinLength(3, ErrorMessage = "Min is 3 characters")]
-        public string OrderName { get; set; }
+        public string UpdatedName { get; set; }
     }
 }
